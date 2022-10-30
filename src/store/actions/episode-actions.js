@@ -6,7 +6,7 @@ const ACTION_NAME = 'FIND_ALL_EPISODES';
 const findAllEpisodesActionTypes = requestActionTypesBuilder(ACTION_NAME);
 
 const findAllEpisodesAction = (idPodcast) => actionBuilder(ACTION_NAME
-    , async () => episodeServiceAdapter.findAll(idPodcast));
+    , async () => episodeServiceAdapter().findAll(idPodcast));
 
 export {
     findAllEpisodesActionTypes,

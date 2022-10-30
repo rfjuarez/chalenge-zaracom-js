@@ -45,3 +45,16 @@ export class Podcast {
         this.description = description;
     }
 }
+
+export class PodcastDetailed {
+    podcast = EMPTY_PODCAST;
+    episodes = []
+
+    constructor(podcast, episodes) {
+        this.podcast = podcast;
+        this.episodes = episodes;
+    }
+};
+
+export const EMPTY_PODCAST = new Podcast(0, 'NA', 'NA', 'NA', 'NA');
+export const EMPTY_PODCAST_DETAIL = new PodcastDetailed(EMPTY_PODCAST, []);

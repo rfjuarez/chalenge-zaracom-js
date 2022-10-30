@@ -1,4 +1,4 @@
-import {convertXML} from "simple-xml-to-json";
+import {xml2json} from 'xml-js'
 import ErrorApiService from "./error-api-service";
 
 const jsonRequestHandler = async (request) => {
@@ -12,7 +12,7 @@ const jsonRequestHandler = async (request) => {
 const xmlRequestHandler = async (request) => {
     const response = await request();
     const data = await response.text();
-    const jsonData = convertXML(data);
+    const jsonData = JSON.parse(xml2json(data, {compact: true}));
     if (response.ok) {
         return jsonData;
     } else throw new ErrorApiService(response.status, jsonData);

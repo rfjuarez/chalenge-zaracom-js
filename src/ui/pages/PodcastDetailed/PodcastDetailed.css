@@ -1,0 +1,14 @@
+.podcast-detailed {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.podcast-detailed__podcast {
+    display: inherit;
+
+}
+
+.podcast-detailed__episode-grid {
+    display: inherit;
+}

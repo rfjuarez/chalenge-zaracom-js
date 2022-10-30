@@ -1,4 +1,5 @@
 import {css} from 'styled-components';
+import {colorTheme} from "../tokens/tokens";
 
 export const stylesTextType = {
     REGULAR: 'regular',
@@ -13,7 +14,9 @@ export const stylesTextWeightType = {
 export const stylesTextThemeColorType = {
     REGULAR: 'regular',
     STRONG: 'strong',
-    LIGHT: 'light'
+    LIGHT: 'light',
+    HIGHLIGHTED_STRONG: 'highlighted-strong',
+    HIGHLIGHTED_LIGHT: 'highlighted-light',
 }
 
 export const stylesTextTypeMapper = {
@@ -45,14 +48,20 @@ export const stylesTextWeightTypeMapper = {
     `
 }
 export const stylesTexThemeColorTypeMapper = {
-    regular: () => css`
-    color: #616A6B;
+    [stylesTextThemeColorType.REGULAR]:css`
+    color: ${colorTheme.DARK_STRONG};
     `,
-    strong: () => css`
-    color: #212F3D;
+    [stylesTextThemeColorType.STRONG]:css`
+    color: ${colorTheme.DARK_STRONGEST};
   `,
-    light: () => css`
-    color: #B3B6B7;
+    [stylesTextThemeColorType.LIGHT]:css`
+    color: ${colorTheme.SKY_REGULAR};
+   `,
+    [stylesTextThemeColorType.HIGHLIGHTED_LIGHT]:css`
+    color: ${colorTheme.DARK_LIGHT};
+   `,
+    [stylesTextThemeColorType.HIGHLIGHTED_STRONG]:css`
+    color: ${colorTheme.SKY_STRONG};
    `
 };
 
@@ -60,5 +69,5 @@ export const stylesTextBuilder = (type, weight, themeColor) => (
     css`
     ${stylesTextTypeMapper[type]};
     ${stylesTextWeightTypeMapper[weight]};
-    ${stylesTextThemeColorType[themeColor]};
+    ${stylesTexThemeColorTypeMapper[themeColor]};
   `);
