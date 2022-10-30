@@ -4,8 +4,8 @@ import {xmlRequestHandler} from "./request-handler";
 
 const findAll = async (idPodcast) => {
     const itemDetailedResponse = await findItemDetailedById(idPodcast);
-    const {feedUrl} = itemDetailedResponse;
-    return secureGet(feedUrl)(xmlRequestHandler);
+    const {results} = itemDetailedResponse;
+    return secureGet(results[0].feedUrl)(xmlRequestHandler);
 }
 
 export {

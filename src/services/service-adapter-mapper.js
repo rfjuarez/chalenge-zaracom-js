@@ -13,14 +13,25 @@ const adapterMapper = {
                 title,
                 pubDate,
                 description,
-                enclosure
+                enclosure,
+                guid,
             } = item;
-            const media = new Media(enclosure._url, enclosure._length, enclosure._type);
-            return new Episode(null
+            const {
+                _attributes: {
+                    url,
+                    length,
+                    type,
+                }
+            } = enclosure;
+
+            const media = new Media(url, type, length);
+
+            return new Episode(
+                guid._text
                 , null
-                , title[0] || "Sin titulo"
-                , pubDate
-                , description
+                , title._text || "Sin titulo"
+                , pubDate._text
+                , description._cdata
                 , media
             );
         })
@@ -39,13 +50,13 @@ const adapterMapper = {
         const getLabelOf = (object, key) => object[key].label;
 
         return entry.map(item => {
+
             return new Podcast(item.id.attributes["im:id"]
                 , getLabelOf(item, "im:artist")
                 , getLabelOf(item, "title")
                 , getLastPosterAvailable(item)
                 , getLabelOf(item, "summary"));
         })
-
     }
 }
 export {

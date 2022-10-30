@@ -6,7 +6,7 @@ import {episodeRepositoryPort} from "../application/use-cases";
 const episodeServiceAdapter = () => ({
     ...episodeRepositoryPort,
     findAll: async (idPodcast) =>
-        serviceAdapter(adapterMapper[adaptersTypes.EPISODE])(() => findAll(idPodcast))
+        serviceAdapter(adapterMapper[adaptersTypes.EPISODE])(async () => findAll(idPodcast))
 })
 
 export {
