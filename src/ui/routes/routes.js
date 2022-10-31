@@ -1,7 +1,7 @@
 import {paths} from "./paths";
 import Home from "../pages/Home/Home";
 import PodcastDetailed from "../pages/PodcastDetailed/PodcastDetailed";
-import Episode from "../pages/Episode/Episode";
+import ListenEpisode from "../pages/ListenEpisode/ListenEpisode";
 
 export const routes = [
     {
@@ -16,7 +16,7 @@ export const routes = [
     },
     {
         path: paths.EPISODE,
-        element: <Episode/>,
+        element: <ListenEpisode/>,
         exact: true,
     }
 ];

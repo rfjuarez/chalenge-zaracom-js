@@ -6,9 +6,11 @@
 
 .podcast-detailed__podcast {
     display: inherit;
-
+    margin: 32px 16px;
 }
 
 .podcast-detailed__episode-grid {
     display: inherit;
+    margin: 32px 16px;
+    width: 100%;
 }

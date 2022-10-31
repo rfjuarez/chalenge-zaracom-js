@@ -1,0 +1,12 @@
+.listen-episode {
+    display: flex;
+    flex-direction: row;
+}
+
+.listen-episode__podcast {
+    margin: 32px 16px;
+}
+
+.listen-episode__episode {
+    margin: 32px 16px;
+}

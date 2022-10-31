@@ -1,3 +1,5 @@
+export const S_D = 'S/D';
+
 export class Media {
     source;
     type;
@@ -56,5 +58,18 @@ export class PodcastDetailed {
     }
 };
 
-export const EMPTY_PODCAST = new Podcast(0, 'NA', 'NA', 'NA', 'NA');
+export const EMPTY_PODCAST = new Podcast(S_D, S_D, S_D, S_D, S_D);
+export const EMPTY_EPISODE = new Episode(S_D, S_D, S_D, S_D, S_D, S_D);
 export const EMPTY_PODCAST_DETAIL = new PodcastDetailed(EMPTY_PODCAST, []);
+
+export class EpisodeDetailed {
+    podcast;
+    episode;
+
+    constructor(podcast, episode) {
+        this.podcast = podcast;
+        this.episode = episode;
+    }
+}
+
+export const EMPTY_EPISODE_DETAILED = new EpisodeDetailed(EMPTY_PODCAST, EMPTY_EPISODE);

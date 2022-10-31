@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import './Stripe.css'
+import Poster from "../Poster/Poster";
 
 const settings = {
     dots: false,
@@ -16,7 +17,7 @@ const Stripe = ({posters}) => {
     return (
         <div className='stripe__wrapper'>
             <Slider {...settings}>
-                {posters}
+                {posters.map(poster => (<Poster {...poster}/>))}
             </Slider>
         </div>
     )
