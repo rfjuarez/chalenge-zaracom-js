@@ -1,4 +1,4 @@
-import {Episode, Media, Podcast} from "../application/domain/model";
+import {Episode, Media, Podcast} from "../../application/domain/model";
 
 const adaptersTypes = {
     EPISODE: 'Episode',

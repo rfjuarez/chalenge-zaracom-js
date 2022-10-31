@@ -12,16 +12,14 @@ const settings = {
     slidesToScroll: 1
 };
 
-const Stripe = ({posters}) => {
-    //debugger
-    return (
-        <div className='stripe__wrapper'>
-            <Slider {...settings}>
-                {posters.map(poster => (<Poster {...poster}/>))}
-            </Slider>
-        </div>
-    )
-};
+const Stripe = ({posters, selectPosterHandler}) => (
+    <div className='stripe__wrapper'>
+        <Slider {...settings}>
+            {posters.map(poster => (<Poster key={poster.id} podcast={poster} onClick={selectPosterHandler}/>))}
+        </Slider>
+    </div>
+);
+
 Stripe.propTypes = {
     posters: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,

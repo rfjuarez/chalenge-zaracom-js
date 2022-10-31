@@ -4,7 +4,6 @@ const serviceAdapter = (translator) =>
         return translator(response);
     }
 
-
 export {
     serviceAdapter
 }

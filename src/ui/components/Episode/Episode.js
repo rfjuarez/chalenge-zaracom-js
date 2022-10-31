@@ -17,7 +17,7 @@ const Episode = ({title, description, media}) => {
                 <div dangerouslySetInnerHTML={{__html: description}}/>
             </Paragraph>
             <Styled.Audio controls>
-                <source src={media.source} type={media.type}/>
+                <source src={media?.source} type={media?.type}/>
             </Styled.Audio>
         </Card>)
 }

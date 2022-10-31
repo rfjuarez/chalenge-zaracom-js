@@ -5,21 +5,18 @@ import Paragraph from "../Text/Paragraph/Paragraph";
 import {stylesTextThemeColorType, stylesTextType, stylesTextWeightType} from "../../../assets/styles/text-styles";
 import * as Styled from './Poster.styled'
 import PropTypes from "prop-types";
-import {useNavigate} from "react-router";
-import {pathBuilder, paths} from "../../routes/paths";
 
-const Poster = ({title, author, poster, id}) => {
-    const navigate = useNavigate();
-    const onClickHandler = (event) => {
-        event.preventDefault();
-        navigate(pathBuilder(paths.PODCAST_DETAILS)(id));
-    }
+const Poster = ({podcast, onClick}) => {
+    const {
+        title, author, poster
+    } = podcast;
+
     return (
         <Styled.PosterWrapper>
-            <Styled.PosterWrapperImage onClick={(event) => onClickHandler(event)}>
+            <Styled.PosterWrapperImage onClick={(event) => onClick(event, podcast)}>
                 <Image alt={title} src={poster} round={true} width={100}/>
             </Styled.PosterWrapperImage>
-            <Styled.PosterWrapperDescription onClick={(event) => onClickHandler(event)}>
+            <Styled.PosterWrapperDescription onClick={(event) => onClick(event, podcast)}>
                 <Card>
                     <Styled.PosterContentDescription>
                         <Paragraph
