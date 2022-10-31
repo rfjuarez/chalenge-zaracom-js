@@ -8,18 +8,18 @@ import PropTypes from "prop-types";
 import {useNavigate} from "react-router";
 import {pathBuilder, paths} from "../../routes/paths";
 
-const Poster = ({title, author, img, id}) => {
+const Poster = ({title, author, poster, id}) => {
     const navigate = useNavigate();
     const onClickHandler = (event) => {
         event.preventDefault();
         navigate(pathBuilder(paths.PODCAST_DETAILS)(id));
     }
     return (
-        <Styled.PosterWrapper onClick={(event) => onClickHandler(event)}>
-            <Styled.PosterWrapperImage>
-                <Image alt={title} src={img} round={true} width={100} height={100}/>
+        <Styled.PosterWrapper>
+            <Styled.PosterWrapperImage onClick={(event) => onClickHandler(event)}>
+                <Image alt={title} src={poster} round={true} width={100}/>
             </Styled.PosterWrapperImage>
-            <Styled.PosterWrapperDescription>
+            <Styled.PosterWrapperDescription onClick={(event) => onClickHandler(event)}>
                 <Card>
                     <Styled.PosterContentDescription>
                         <Paragraph

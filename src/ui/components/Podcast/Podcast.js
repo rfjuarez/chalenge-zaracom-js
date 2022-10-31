@@ -5,11 +5,11 @@ import Paragraph from "../Text/Paragraph/Paragraph";
 import {stylesTextType, stylesTextWeightType} from "../../../assets/styles/text-styles";
 import './Podcast.css';
 
-const Podcast = ({title, author, img, id, description}) => {
+const Podcast = ({title, author, poster, id, description}) => {
     return (
         <div className='podcast'>
-            <Card width={180} height={260}>
-                <Image height={108} width={108} src={img} alt={title}/>
+            <Card width={260} height={512}>
+                <Image width={210} src={poster} alt={title}/>
                 <Paragraph
                     weight={stylesTextWeightType.HEAVY}> {title}
                 </Paragraph>

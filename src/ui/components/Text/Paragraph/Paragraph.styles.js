@@ -6,9 +6,9 @@ export const Paragraph = styled.p`
     padding: 8px 0px;
     margin: 0;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: break-spaces;
     overflow: hidden;
-  ${({type, weight, themeColor}) => css`
-    ${stylesTextBuilder(type, weight, themeColor)};
-  `}
+    ${({type, weight, themeColor}) => css`
+      ${stylesTextBuilder(type, weight, themeColor)};
+    `}
 `

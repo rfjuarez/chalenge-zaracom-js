@@ -17,8 +17,7 @@ const buildBorderCell = (radius) => css`
 export const EpisodeGrid = styled.div`
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin: 16px 32px;
+    width: 100%;    
     `
 
 export const Table = styled.table`
@@ -57,7 +56,10 @@ export const DataHighlightedCell = styled.td`
     , stylesTextThemeColorType.HIGHLIGHTED_STRONG)};
      ${buildBorderCell(5)};    
 `
-export const Row = styled.tr`
+export const TableBody = styled.tbody`
+    cursor: pointer;
+    `
+export const Row = styled.tr`          
      &:nth-child(even) {
         background-color: #dddddd;
      }    

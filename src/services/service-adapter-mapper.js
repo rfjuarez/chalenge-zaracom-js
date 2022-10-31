@@ -8,6 +8,7 @@ const adaptersTypes = {
 
 const adapterMapper = {
     [adaptersTypes.EPISODE]: (serviceResponse) => {
+        const removeSpecialCharacters = (string) => string.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
         return serviceResponse?.rss?.channel?.item.map(item => {
             const {
                 title,
@@ -25,9 +26,11 @@ const adapterMapper = {
             } = enclosure;
 
             const media = new Media(url, type, length);
-
+            /*
+            some resources do not have a well-formed guid
+            */
             return new Episode(
-                guid._text
+                removeSpecialCharacters(guid._text)
                 , null
                 , title._text || "Sin titulo"
                 , pubDate._text

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Paragraph from "../Text/Paragraph/Paragraph";
 import * as Styled from './EpisodeGrid.styled'
 
-const EpisodeGrid = ({episodes}) => {
+const EpisodeGrid = ({episodes, onClickHandler}) => {
     return (
         <Styled.EpisodeGrid>
             <Card>
@@ -22,20 +22,20 @@ const EpisodeGrid = ({episodes}) => {
                     <Styled.HeaderCell>Duration</Styled.HeaderCell>
                 </Styled.Row>
                 </thead>
-                <tbody>
-                {episodes.map(episode => (
-                        <Styled.Row key={episode.id}>
-                            <Styled.DataHighlightedCell>{episode.title}</Styled.DataHighlightedCell>
-                            <Styled.DataCell>{episode.date}</Styled.DataCell>
-                            <Styled.DataCell>{episode.media.duration}</Styled.DataCell>
-                        </Styled.Row>
-                    )
-                )}
-                </tbody>
+                <Styled.TableBody>
+                    {episodes.map(episode => (
+                            <Styled.Row key={episode.id}
+                                        onClick={(event) => !!onClickHandler && onClickHandler(event, episode)}>
+                                <Styled.DataHighlightedCell>{episode.title}</Styled.DataHighlightedCell>
+                                <Styled.DataCell>{episode.date}</Styled.DataCell>
+                                <Styled.DataCell>{episode.media.duration}</Styled.DataCell>
+                            </Styled.Row>
+                        )
+                    )}
+                </Styled.TableBody>
             </Styled.Table>
         </Styled.EpisodeGrid>
     )
-
 }
 
 export default EpisodeGrid;

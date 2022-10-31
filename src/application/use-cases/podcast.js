@@ -1,4 +1,11 @@
-import {EMPTY_PODCAST_DETAIL, PodcastDetailed} from "../domain/model";
+import {
+    EMPTY_EPISODE,
+    EMPTY_EPISODE_DETAILED,
+    EMPTY_PODCAST_DETAIL,
+    EpisodeDetailed,
+    PodcastDetailed,
+    S_D
+} from "../domain/model";
 
 
 const useCasePodcast = (podcastRepository) => ({
@@ -38,7 +45,24 @@ class UseCasePodcastStateFull {
         }
         const episodes = await this.episodesRepository.findAll(podcast.id);
         return new PodcastDetailed(podcast, episodes);
+    }
 
+    async findEpisodeOfPodcastBy(podcastId, episodeId) {
+        if (!podcastId || !episodeId) {
+            return EMPTY_EPISODE_DETAILED;
+        }
+        const podcastDetailed = await this.findPodcastDetailed(podcastId);
+        if (podcastDetailed.podcast.id === S_D) {
+            return EMPTY_EPISODE_DETAILED;
+        }
+        if (podcastDetailed.episodes.length === 0) {
+            return EMPTY_EPISODE_DETAILED;
+        }
+        const episode = podcastDetailed.episodes.find(episode => episode.id === episodeId);
+        if (!episode) {
+            return new EpisodeDetailed({...podcastDetailed.podcast}, EMPTY_EPISODE);
+        }
+        return new EpisodeDetailed({...podcastDetailed.podcast}, episode);
     }
 }
 
