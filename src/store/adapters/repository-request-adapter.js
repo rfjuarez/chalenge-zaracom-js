@@ -6,7 +6,7 @@ import {
 } from "../actions/action-builder";
 
 
-const repositoryAdapter = (dispatch) => {
+const repositoryRequestAdapter = (dispatch) => {
     return async ({type, promise}) => {
         const actionStates = requestActionTypesBuilder(type);
         dispatch(sendActionRequestBuilder(actionStates.actionRequest));
@@ -20,4 +20,4 @@ const repositoryAdapter = (dispatch) => {
         }
     }
 };
-export {repositoryAdapter};
+export {repositoryRequestAdapter};

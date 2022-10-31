@@ -4,9 +4,13 @@ const actionState = {
     ACTION_FAILED: 'FAILED'
 }
 
-const actionBuilder = (type, promise) => ({
+const requestActionBuilder = (type, promise) => ({
     type,
     promise
+});
+const actionBuilder = (type, payload) => ({
+    type,
+    payload,
 });
 
 const sendActionRequestBuilder = (type) => ({type});
@@ -26,8 +30,9 @@ const requestActionTypesBuilder = (actionName) => {
 }
 export {
     requestActionTypesBuilder,
-    actionBuilder,
+    requestActionBuilder,
     sendActionRequestBuilder,
     doneActionRequestBuilder,
-    failActionRequestBuilder
+    failActionRequestBuilder,
+    actionBuilder,
 } ;
