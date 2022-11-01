@@ -41,7 +41,7 @@ class UseCasePodcastStateFull {
     }
 
     async findPodcast(podcastId) {
-        const podcastSelected = this.podcastRepository.getSelected();
+        const podcastSelected = await this.podcastRepository.getSelected();
         if (!!podcastSelected && podcastSelected.id === podcastId)
             return podcastSelected;
         const podcasts = await this.podcastRepository.findAll();
@@ -49,7 +49,7 @@ class UseCasePodcastStateFull {
     }
 
     async findEpisode(podcastId, episodeId) {
-        const episodeSelected = this.episodesRepository.getSelected();
+        const episodeSelected =await  this.episodesRepository.getSelected();
         if (!!episodeSelected && episodeSelected.id === episodeId)
             return episodeSelected;
         const episodes = await this.episodesRepository.findAll(podcastId);
