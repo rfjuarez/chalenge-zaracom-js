@@ -9,7 +9,6 @@ const podcastRepositoryAdapter = (dispatch) => ({
     ...podcastRepositoryPort,
     findAll: async () => {
         const {podcasts} = storeInstance.getState();
-        console.log('podcastRepositoryAdapter', podcasts)
         const isNotEmpty = !!podcasts && podcasts.podcasts.length > 0;
         if (isNotEmpty) {
             return podcasts.podcasts;
