@@ -9,6 +9,7 @@ import {pathBuilder, paths} from "../../routes/paths";
 import Loading from "../../components/Loading/Loading";
 import {useSelector} from "react-redux";
 import {isState} from "../../../store/reducers/reducer-state";
+import Header from "../../components/Header/Header";
 
 const PodcastDetailed = ({}) => {
         const {podcastId} = useParams();
@@ -37,6 +38,7 @@ const PodcastDetailed = ({}) => {
         return (
             <Loading isLoading={() => (isState(podcastStatus).loading ||
                 isState(episodeStatus).loading)}>
+                <Header title='Podcaster'/>
                 <div className='podcast-detailed'>
                     <div className='podcast-detailed__podcast'>
                         <Podcast author={podcastDetail.podcast?.author}

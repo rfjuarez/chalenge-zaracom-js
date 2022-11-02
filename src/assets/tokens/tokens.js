@@ -11,4 +11,6 @@ export const colorTheme = {
     DARK_LIGHT: '#b3b6b7',
     SKY_STRONG: '#1f618d',
     SKY_REGULAR: '#2874a6',
+    LIGHT_REGULAR: '#F4F6F6',
+    LIGHTEST: '#F8F9F9'
 };

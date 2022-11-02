@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Challenge 
+## Abstract
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta aplicación forma parte de challenge técnico.
+La misma se encuentra en progreso.
 
-## Available Scripts
+## Lo que se incluye hasta el momento.
 
-In the project directory, you can run:
+* Arquitectura del proyecto basada en arquitectura exagonal.
+  * Layers
+    * Application
+    * Services
+    * UI
+    * Store
+* Funcionalidad basica solicitada.
 
-### `npm start`
+## Algunas consideraciones sobre el armado del proyecto
+El manejo de las dependencias entre capas fueron manejadas mediante HOF, comosustituto funcional para la inyección de 
+dependencias.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```javascript
+const useUseCasePodcast = () => {
+    const dispatch = useDispatch();
+    //se crean las dependencia para Redux dispatch
+    const podcastRepository = podcastRepositoryAdapter(dispatch);
+    const episodeRepository = episodeRepositoryAdapter(dispatch);
+    //se inyectan las dependecias
+    const _useCasePodcast = new UseCasePodcastStateFull(podcastRepository, episodeRepository)
+    return {
+        useCasePodcast: _useCasePodcast,
+    }
+}
+export default useUseCasePodcast
+```
+El manejo de las interfaces se realizó mediante extensión de los prototipos declarados el el paquete port.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+```javascript
+const episodeRepositoryAdapter = (dispatch) => ({
+    //se crea una estrutura a partir del prototipo port.
+    ...episodeRepositoryPort,
+    findAll: async (idPodcast) => {
+        return repositoryRequestAdapter(dispatch)(findAllEpisodesAction(idPodcast))
+    },
+    select: async (episode) => {
+        repositoryActionAdapter(selectEpisodeAction(episode));
+    },
+    getSelected: async () => {
+        const {episodes} = storeInstance.getState();
+        return episodes?.selected;
+    },
+    flush: async () => {
+        repositoryActionAdapter(flushEpisodeStoreAction());
+    }
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+});
+```
+## En Backlog. 
+* Test unitarios.
+* Configuración de Services Workers con Workpack.
+* Ajustes Visuales.
+* Lint 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Dependencias externas al proyecto
+    Se instalo plugins Moesif CORS en Chrome para el manejo de CORS.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ¡Importante! Versión de Node
+    v16.18.0
+## Problema de dependencias encontradas.
+Se realizaron pruebas con varias librerias de parse XML obtando por.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    xml-js
+Fue necesario instalar algunas dependecias adicionales y resolber conflictos con versiones de Node.
+Esta son:
+    
+    "buffer": "^6.0.3",
+    "stream": "^0.0.2",    
 
-### `npm run eject`
+## Criterio para el manejo de Css y Styled Component.
+Para todos los componentes que requirieron manejo dinámico o reutilizar bloques existente de estilos, se empleó
+Styled Component.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Para todos los componentes que requerían ajustes mínimos se empleó css.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Como correr la aplicacion.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* nvm use v16.18.0
+* npm install
+* npm start

@@ -1,6 +1,7 @@
 .listen-episode {
     display: flex;
     flex-direction: row;
+    margin-top: 64px;
 }
 
 .listen-episode__podcast {

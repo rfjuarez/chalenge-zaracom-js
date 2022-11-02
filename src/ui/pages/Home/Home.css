@@ -1,0 +1,15 @@
+.header__input-filter-wrapper {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+}
+
+.header__input-filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-filter__pill-wrapper {
+    margin-right: 16px;
+    align-self: center;
+}

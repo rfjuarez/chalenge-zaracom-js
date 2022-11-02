@@ -44,7 +44,7 @@ export const DataCell = styled.td`
      white-space: nowrap;
      overflow: hidden;
      ${stylesTextBuilder(stylesTextType.SMALL
-    , <stylesTextWeightType className="HEAVY"></stylesTextWeightType>
+    , stylesTextWeightType.HEAVY
     , stylesTextThemeColorType.STRONG)};
      ${buildBorderCell(5)};    
      
@@ -53,7 +53,7 @@ export const DataHighlightedCell = styled.td`
      text-align: left;
      ${stylesTextBuilder(stylesTextType.REGULAR
     , stylesTextWeightType.LIGHT
-    , stylesTextThemeColorType.HIGHLIGHTED_STRONG)};
+    , stylesTextThemeColorType.SKY_STRONG)};
      ${buildBorderCell(5)};    
 `
 export const TableBody = styled.tbody`

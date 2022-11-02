@@ -1,6 +1,6 @@
 export const paths = {
     HOME: '/',
-    PODCAST_DETAILS: 'podcast/:podcastId',
+    PODCAST_DETAILS: '/podcast/:podcastId',
     EPISODE: '/podcast/:podcastId/episode/:episodeId',
 }
 const pathBuilderMapper = new Map();
