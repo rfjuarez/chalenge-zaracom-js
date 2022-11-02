@@ -5,6 +5,7 @@ import {storeInstance} from "../config";
 const {findAllPodcastAction} = require("../actions/podcast-actions");
 const {repositoryRequestAdapter} = require("./repository-request-adapter");
 
+
 const podcastRepositoryAdapter = (dispatch) => ({
     ...podcastRepositoryPort,
     findAll: async () => {

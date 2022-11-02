@@ -1,13 +1,14 @@
 import React from "react";
-import './Card.css'
+import * as Styled from './Card.styled';
 
-const Card = ({children, width, height}) => {
-    const styles = {
-        height: height ? `${height}px` : undefined,
-        width: width ? `${width}px` : undefined,
-    }
+const Card = ({children, width, height, onClick}) => {
     return (
-        <div style={{...styles}} className='card'>{children}</div>
+        <Styled.Card
+            width={width}
+            height={height}
+            onClick={onClick}>
+            {children}
+        </Styled.Card>
     )
 }
 export default Card;
