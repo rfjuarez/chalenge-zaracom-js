@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.0.0-alpha.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -23,12 +24,13 @@
     "stream": "^0.0.2",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
+    "workbox-webpack-plugin": "^6.5.4",
     "xml-js": "^1.6.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "GENERATE_SOURCEMAP=false craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "browserslist": {
