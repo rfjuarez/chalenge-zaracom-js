@@ -1,10 +1,12 @@
 import {
   EMPTY_EPISODE,
   EMPTY_EPISODE_DETAILED,
+  EMPTY_PODCAST,
   EMPTY_PODCAST_DETAIL,
   EpisodeDetailed,
   PodcastDetailed
 } from '../domain/model';
+import cache from '../cache/cache';
 
 const useCasePodcast = (podcastRepository) => ({
   findAll: async () => podcastRepository.findAll(),
@@ -30,8 +32,8 @@ class UseCasePodcastStateFull {
         author
       } = podcast;
       const _query = query.toLowerCase();
-      const queryResult=title.toLowerCase().includes(_query) ||
-          author.toLowerCase().includes(_query);
+      const queryResult = title.toLowerCase().includes(_query) ||
+                author.toLowerCase().includes(_query);
       return (queryResult);
     });
   }
@@ -51,25 +53,51 @@ class UseCasePodcastStateFull {
       return EMPTY_PODCAST_DETAIL;
     }
 
-    this.podcastRepository.select(podcast);
     const episodes = await this.episodesRepository.findAll(podcast.id);
     return new PodcastDetailed(podcast, episodes);
   }
 
   async findPodcast(podcastId) {
-    const podcastSelected = await this.podcastRepository.getSelected();
-    if (!!podcastSelected && podcastSelected.id === podcastId)
-      return podcastSelected;
+    if (!podcastId) {
+      return EMPTY_PODCAST
+    }
+
+    const podcastCached = cache.get(podcastId);
+
+    if (podcastCached) {
+      return podcastCached;
+    }
+
     const podcasts = await this.podcastRepository.findAll();
-    return podcasts.find(podcast => podcast.id === podcastId);
+    const podcast = podcasts.find(podcast => podcast.id === podcastId);
+    if (podcast) {
+      cache.add(podcast?.id, podcast);
+      this.podcastRepository.select(podcast);
+    }
+
+    return podcast;
   }
 
   async findEpisode(podcastId, episodeId) {
-    const episodeSelected = await this.episodesRepository.getSelected();
-    if (!!episodeSelected && episodeSelected.id === episodeId)
-      return episodeSelected;
+    if (!podcastId || !episodeId) {
+      return EMPTY_EPISODE;
+    }
+    const episodeCached = cache.get(this.createKey(podcastId, episodeId));
+    if (episodeCached) {
+      return episodeCached;
+    }
+
     const episodes = await this.episodesRepository.findAll(podcastId);
-    return episodes.find(episode => episode.id === episodeId);
+    const episode = episodes.find(episode => episode.id === episodeId);
+    if (episode) {
+      cache.add(this.createKey(podcastId, episode.id), episode);
+      this.episodesRepository.select(episode);
+    }
+    return episode;
+  }
+
+  createKey(podcastId, episodeId) {
+    return `${podcastId}-${episodeId}`;
   }
 
   async findEpisodeOfPodcastBy(podcastId, episodeId) {
@@ -107,6 +135,7 @@ class UseCasePodcastStateFull {
   async flush() {
     this.podcastRepository.flush();
     this.episodesRepository.flush();
+    cache.flush();
   }
 }
 
