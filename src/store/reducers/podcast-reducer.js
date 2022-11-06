@@ -26,8 +26,8 @@ const podcastReducer = (state = initialState, action) => {
   }
   case findAllPodcastActionTypes.actionFailed: {
     return {
-      ...state,
-      status: stateType.SUCCESS,
+      ...initialState,
+      status: stateType.FAILED,
       exception: action.exception,
     }
   }

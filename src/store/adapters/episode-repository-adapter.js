@@ -9,7 +9,7 @@ const {repositoryRequestAdapter} = require('./repository-request-adapter');
 const episodeRepositoryAdapter = (dispatch) => ({
   ...episodeRepositoryPort,
   findAll: async (idPodcast) => {
-    return repositoryRequestAdapter(dispatch)(findAllEpisodesAction(idPodcast))
+    return repositoryRequestAdapter(dispatch, [])(findAllEpisodesAction(idPodcast))
   },
   select: async (episode) => {
     repositoryActionAdapter(selectEpisodeAction(episode));

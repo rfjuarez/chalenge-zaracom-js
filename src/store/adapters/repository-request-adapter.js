@@ -4,9 +4,9 @@ import {
   requestActionTypesBuilder,
   sendActionRequestBuilder
 } from '../actions/action-builder';
+import log from '../../ui/utils/log-utils';
 
-
-const repositoryRequestAdapter = (dispatch) => {
+const repositoryRequestAdapter = (dispatch, defaultResponse) => {
   return async ({type, promise}) => {
     const actionStates = requestActionTypesBuilder(type);
     dispatch(sendActionRequestBuilder(actionStates.actionRequest));
@@ -16,7 +16,8 @@ const repositoryRequestAdapter = (dispatch) => {
       return data;
     } catch (err) {
       dispatch(failActionRequestBuilder(actionStates.actionFailed, err));
-      return err;
+      log(err)
+      return defaultResponse;
     }
   }
 };
