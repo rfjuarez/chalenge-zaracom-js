@@ -6,7 +6,6 @@ import {
   PodcastDetailed
 } from '../domain/model';
 
-
 const useCasePodcast = (podcastRepository) => ({
   findAll: async () => podcastRepository.findAll(),
 })
@@ -31,8 +30,9 @@ class UseCasePodcastStateFull {
         author
       } = podcast;
       const _query = query.toLowerCase();
-      return (title.toLowerCase().includes(_query) ||
-                author.toLowerCase().includes(_query));
+      const queryResult=title.toLowerCase().includes(_query) ||
+          author.toLowerCase().includes(_query);
+      return (queryResult);
     });
   }
 

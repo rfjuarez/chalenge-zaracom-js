@@ -7,6 +7,7 @@ const initialState = {
   status: stateType.INIT,
   selected: null,
   episodes: [],
+  exception: null,
 }
 
 const episodeReducer = (state = initialState, action) => {
@@ -26,9 +27,9 @@ const episodeReducer = (state = initialState, action) => {
   }
   case findAllEpisodesActionTypes.actionFailed: {
     return {
-      ...state,
-      status: stateType.SUCCESS,
-      episodes: action.exception,
+      ...initialState,
+      status: stateType.FAILED,
+      exception: action.exception,
     }
   }
   case SELECT_EPISODE_ACTION: {

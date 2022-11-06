@@ -1,6 +1,7 @@
 import {podcastRepositoryPort} from '../../application/use-cases';
 import {flushPodcastStoreAction, selectPodcastAction} from '../actions/podcast-actions';
 import {storeInstance} from '../config';
+import {EMPTY_PODCAST} from '../../application/domain/model';
 
 const {findAllPodcastAction} = require('../actions/podcast-actions');
 const {repositoryRequestAdapter} = require('./repository-request-adapter');
@@ -14,7 +15,7 @@ const podcastRepositoryAdapter = (dispatch) => ({
     if (isNotEmpty) {
       return podcasts.podcasts;
     }
-    return repositoryRequestAdapter(dispatch)(findAllPodcastAction())
+    return repositoryRequestAdapter(dispatch, EMPTY_PODCAST)(findAllPodcastAction())
   },
   select: async (podcast) => {
     dispatch(selectPodcastAction(podcast));
