@@ -1,4 +1,4 @@
-import {stylesTextBuilder} from "../../../../assets/styles/text-styles";
+import {stylesTextBuilder} from '../../../../assets/styles/text-styles';
 import styled, {css} from 'styled-components';
 
 

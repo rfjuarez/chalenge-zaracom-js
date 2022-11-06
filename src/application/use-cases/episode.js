@@ -1,5 +1,5 @@
 const useCaseEpisode = (episodeRepository) => ({
-    findAll: (idPodcast) => episodeRepository.findAll(idPodcast),
+  findAll: (idPodcast) => episodeRepository.findAll(idPodcast),
 })
 
 export {useCaseEpisode};

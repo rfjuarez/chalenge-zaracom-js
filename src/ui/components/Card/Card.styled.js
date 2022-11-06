@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
 
 const withSize = (attribute) => css`
-    ${!!attribute ? `${attribute}px;` : ';'}    
+    ${attribute ? `${attribute}px;` : ';'}    
     `
 export const Card = styled.div`
     display: flex;
@@ -12,7 +12,7 @@ export const Card = styled.div`
     transition: 0.3s;
     width:${({width}) => withSize(width)}
     height:${({height}) => withSize(height)}
-    cursor:${({onClick}) => `${!!onClick ? 'pointer;' : 'auto;'}`}
+    cursor:${({onClick}) => `${onClick ? 'pointer;' : 'auto;'}`}
     &:hover {
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }

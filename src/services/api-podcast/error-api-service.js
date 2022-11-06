@@ -1,13 +1,13 @@
 class ErrorApiService{
-    status;
-    message;
-    exception;
+  status;
+  message;
+  exception;
 
-    constructor(status, message, exception) {
-        this.status = status;
-        this.message = message;
-        this.exception = exception;
-    }
+  constructor(status, message, exception) {
+    this.status = status;
+    this.message = message;
+    this.exception = exception;
+  }
 }
 
 export default ErrorApiService;

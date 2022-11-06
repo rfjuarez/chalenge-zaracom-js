@@ -1,26 +1,27 @@
-import {EMPTY_EPISODE, EMPTY_PODCAST} from "../domain/model";
+import {EMPTY_EPISODE, EMPTY_PODCAST} from '../domain/model';
 
 export const podcastRepositoryPort = {
-    findAll: async () => {
-    },
-    select: async (episode) => {
+  findAll: async () => {
+  },
+  // eslint-disable-next-line no-unused-vars
+  select: async (episode) => {},
+  getSelected: async () => {
+    return EMPTY_PODCAST;
 
-    },
-    getSelected: async () => {
-        return EMPTY_PODCAST;
-
-    },
-    flush:async ()=>{}
+  },
+  flush:async ()=>{}
 };
 
 export const episodeRepositoryPort = {
-    findAll: async (idPodcast) => {
-    },
-    select: async (episode) => {
+  // eslint-disable-next-line no-unused-vars
+  findAll: async (idPodcast) => {
+  },
+  // eslint-disable-next-line no-unused-vars
+  select: async (episode) => {
 
-    },
-    getSelected: async () => {
-        return EMPTY_EPISODE;
-    },
-    flush:async ()=>{}
+  },
+  getSelected: async () => {
+    return EMPTY_EPISODE;
+  },
+  flush:async ()=>{}
 };
