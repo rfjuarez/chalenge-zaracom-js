@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {colorTheme, zPosition} from "../../../assets/tokens/tokens";
+import styled from 'styled-components';
+import {colorTheme, zPosition} from '../../../assets/tokens/tokens';
 
 export const Header = styled.div`
     position:fixed;

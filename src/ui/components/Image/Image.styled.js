@@ -5,7 +5,7 @@ export const Image = styled.img`
     background: aliceblue;
     align-self: center;
     ${({isRound}) => css`
-      ${isRound ? `border-radius: 50%` : `border-radius:2px`};
+      ${isRound ? 'border-radius: 50%' : 'border-radius:2px'};
     `}
     ${({width}) => css`
           width: ${width}px;

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import {colorTheme} from "../../../assets/tokens/tokens";
+import {colorTheme} from '../../../assets/tokens/tokens';
 import {
-    stylesTextBuilder,
-    stylesTextThemeColorType,
-    stylesTextType,
-    stylesTextWeightType
-} from "../../../assets/styles/text-styles";
+  stylesTextBuilder,
+  stylesTextThemeColorType,
+  stylesTextType,
+  stylesTextWeightType
+} from '../../../assets/styles/text-styles';
 
 
 export const InputFilter = styled.input`

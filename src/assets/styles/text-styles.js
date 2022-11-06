@@ -1,81 +1,81 @@
 import {css} from 'styled-components';
-import {colorTheme} from "../tokens/tokens";
+import {colorTheme} from '../tokens/tokens';
 
 export const stylesTextType = {
-    REGULAR: 'regular',
-    SMALL: 'small',
-    LARGE: 'large',
+  REGULAR: 'regular',
+  SMALL: 'small',
+  LARGE: 'large',
 }
 export const stylesTextWeightType = {
-    REGULAR: 'regular',
-    HEAVY: 'heavy',
-    LIGHT: 'light',
+  REGULAR: 'regular',
+  HEAVY: 'heavy',
+  LIGHT: 'light',
 }
 export const stylesTextThemeColorType = {
-    REGULAR: 'regular',
-    STRONG: 'strong',
-    LIGHT: 'light',
-    HIGHLIGHTED_STRONG: 'highlighted-strong',
-    HIGHLIGHTED_LIGHT: 'highlighted-light',
-    SKY: 'sky',
-    SKY_STRONG: 'sky-strong',
+  REGULAR: 'regular',
+  STRONG: 'strong',
+  LIGHT: 'light',
+  HIGHLIGHTED_STRONG: 'highlighted-strong',
+  HIGHLIGHTED_LIGHT: 'highlighted-light',
+  SKY: 'sky',
+  SKY_STRONG: 'sky-strong',
 
 }
 
 export const stylesTextTypeMapper = {
-    regular: () => css`
+  regular: () => css`
     font-size: 14px;
     line-height: 24px;
     font-family: Roboto,serif;
   `,
-    small: () => css`
+  small: () => css`
     font-size: 12px;
     line-height: 16px;
     font-family: Roboto,serif;
     `,
-    large: () => css`
+  large: () => css`
     font-size: 16px;
     line-height: 24px;
     font-family: Roboto,serif;
     `
 }
 export const stylesTextWeightTypeMapper = {
-    regular: () => css`
+  regular: () => css`
     font-weight: normal;
     `,
-    heavy: () => css`
+  heavy: () => css`
     font-weight: bold;
   `,
-    light: () => css`
+  light: () => css`
     font-weight: 200;
     `
 }
 export const stylesTexThemeColorTypeMapper = {
-    [stylesTextThemeColorType.REGULAR]: css`
+  [stylesTextThemeColorType.REGULAR]: css`
     color: ${colorTheme.DARK_STRONG};
     `,
-    [stylesTextThemeColorType.STRONG]: css`
+  [stylesTextThemeColorType.STRONG]: css`
     color: ${colorTheme.DARK_STRONGEST};
   `,
-    [stylesTextThemeColorType.LIGHT]: css`
+  [stylesTextThemeColorType.LIGHT]: css`
     color: ${colorTheme.SKY_REGULAR};
    `,
-    [stylesTextThemeColorType.HIGHLIGHTED_LIGHT]: css`
+  [stylesTextThemeColorType.HIGHLIGHTED_LIGHT]: css`
     color: ${colorTheme.LIGHT_REGULAR};
    `,
-    [stylesTextThemeColorType.HIGHLIGHTED_STRONG]: css`
+  [stylesTextThemeColorType.HIGHLIGHTED_STRONG]: css`
     color: ${colorTheme.LIGHTEST};
    `,
-    [stylesTextThemeColorType.SKY_STRONG]: css`
+  [stylesTextThemeColorType.SKY_STRONG]: css`
     color: ${colorTheme.SKY_STRONG};
    `,
-    [stylesTextThemeColorType.SKY]: css`
+  [stylesTextThemeColorType.SKY]: css`
     color: ${colorTheme.SKY_REGULAR};
    `
 };
 
 export const stylesTextBuilder = (type, weight, themeColor) => (
-    css`
+  css`
     ${stylesTextTypeMapper[type]};
     ${stylesTextWeightTypeMapper[weight]};
     ${stylesTexThemeColorTypeMapper[themeColor]};

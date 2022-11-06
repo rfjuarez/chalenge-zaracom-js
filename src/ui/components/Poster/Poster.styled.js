@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {zPosition} from "../../../assets/tokens/tokens";
+import {zPosition} from '../../../assets/tokens/tokens';
 
 const POSTER_IMAGE_RADIUS = 50;
 const POSTER_WIDTH = 195;

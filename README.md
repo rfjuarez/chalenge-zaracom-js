@@ -57,7 +57,7 @@ const episodeRepositoryAdapter = (dispatch) => ({
 ## En Backlog. 
 * Test unitarios.
 * Ajustes Visuales.
-* Lint 
+* Manejo de errores
 
 ## Dependencias externas al proyecto
     Se instalo plugins Moesif CORS en Chrome para el manejo de CORS.

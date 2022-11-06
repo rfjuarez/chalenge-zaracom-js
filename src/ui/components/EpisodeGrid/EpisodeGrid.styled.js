@@ -1,12 +1,12 @@
 import styled, {css} from 'styled-components';
 import {
-    stylesTextBuilder,
-    stylesTextThemeColorType,
-    stylesTextType,
-    stylesTextWeightType,
-} from "../../../assets/styles/text-styles";
+  stylesTextBuilder,
+  stylesTextThemeColorType,
+  stylesTextType,
+  stylesTextWeightType,
+} from '../../../assets/styles/text-styles';
 
-const buildBorderCell = (radius) => css`
+const buildBorderCell = () => css`
     &:first-child {
         border-left: none;
     }
@@ -36,7 +36,7 @@ export const HeaderCell = styled.th`
     ${stylesTextBuilder(stylesTextType.REGULAR
     , stylesTextWeightType.HEAVY
     , stylesTextThemeColorType.REGULAR)};
-    ${buildBorderCell(5)};
+    ${buildBorderCell()};
 `
 export const DataCell = styled.td`
      text-align: left;
@@ -46,7 +46,7 @@ export const DataCell = styled.td`
      ${stylesTextBuilder(stylesTextType.SMALL
     , stylesTextWeightType.HEAVY
     , stylesTextThemeColorType.STRONG)};
-     ${buildBorderCell(5)};    
+     ${buildBorderCell()};    
      
 `
 export const DataHighlightedCell = styled.td`

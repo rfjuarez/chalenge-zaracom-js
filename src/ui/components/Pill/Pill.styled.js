@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
-    stylesTextBuilder,
-    stylesTextThemeColorType,
-    stylesTextType,
-    stylesTextWeightType
-} from "../../../assets/styles/text-styles";
-import {colorTheme} from "../../../assets/tokens/tokens";
+  stylesTextBuilder,
+  stylesTextThemeColorType,
+  stylesTextType,
+  stylesTextWeightType
+} from '../../../assets/styles/text-styles';
+import {colorTheme} from '../../../assets/tokens/tokens';
 
 export const Pill = styled.div`
     border-radius: 20%;

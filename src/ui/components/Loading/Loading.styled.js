@@ -1,5 +1,5 @@
 import styled, {keyframes} from 'styled-components';
-import {colorTheme, zPosition} from "../../../assets/tokens/tokens";
+import {colorTheme, zPosition} from '../../../assets/tokens/tokens';
 
 const spinner = keyframes`
     0% {

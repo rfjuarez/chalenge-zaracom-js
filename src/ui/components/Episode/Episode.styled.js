@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colorTheme} from "../../../assets/tokens/tokens";
+import {colorTheme} from '../../../assets/tokens/tokens';
 
 export const Audio = styled.audio`
     width:100%;

@@ -31,7 +31,8 @@
     "start": "craco start",
     "build": "GENERATE_SOURCEMAP=false craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:fix": "eslint --ext js,jsx ./src/*"
   },
   "browserslist": {
     "production": [
@@ -44,5 +45,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-jest": "^27.1.4",
+    "eslint-plugin-react": "^7.31.10"
   }
 }
