@@ -1,7 +1,7 @@
 # Challenge 
 ## Abstract
 
-Esta aplicación forma parte de challenge técnico. La misma se encuentra en progreso.
+Esta aplicación demostración de habilidades técnicas para front.
 
 ## Lo que se incluye hasta el momento.
 
@@ -11,7 +11,16 @@ Esta aplicación forma parte de challenge técnico. La misma se encuentra en pro
     * Services
     * UI
     * Store
-* Funcionalidad básica solicitada.
+## Sobre las capas.
+  * Application: Contiene los modelos de dominio y casos de usos.
+  * Servicios: Responsable de las llamadas a las API externas.
+  * Store: Implementación de Redux, se lo considera como una dependencia externa, por simplicidad, usa el mismo modelo
+de dominio.
+  * UI: Implementación de React, contiene, entre otros, de los módulos: components, pages, routes 
+
+## Manejo de Cache.
+A nivel de caso de uso se emplea un mapa para buscar elementos existentes de una manera rápida.
+Sin embargo la responsabilidad del consumo, recae sobre el Service Worker.
 
 ## Algunas consideraciones sobre el armado del proyecto
 El manejo de las dependencias entre capas fueron manejadas mediante HOF, como sustituto funcional para la inyección de dependencias.
@@ -54,10 +63,6 @@ const episodeRepositoryAdapter = (dispatch) => ({
 
 });
 ```
-## En Backlog. 
-* Test unitarios.
-* Ajustes Visuales.
-* Manejo de errores
 
 ## Dependencias externas al proyecto
     Se instalo plugins Moesif CORS en Chrome para el manejo de CORS.
@@ -99,3 +104,16 @@ el empaquetado generado en la carpeta build.
 
 **Importante:** Para probar el funcionamiento del service worker es requerido desplegar el build, sea local o
 en algún servidor.
+
+## Sobre el branch model y git flow empleado.
+Se siguio la siguiente estructura:
+
+Todas las funcionalidades ramificaron desde develop, y se integraron a esta mediante PR. 
+
+Los releases se crearon a partir de develop.
+Se realizaron pruebas funcionales y los bugfix detectados sobre la release se ramifican de esta y se integraron luego
+mediatne PR a ambas partes, release y develop.
+
+No hay master en uso.
+
+La rama de presentación es: release/presentacion-candidata.
