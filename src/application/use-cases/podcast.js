@@ -89,10 +89,12 @@ class UseCasePodcastStateFull {
 
     const episodes = await this.episodesRepository.findAll(podcastId);
     const episode = episodes.find(episode => episode.id === episodeId);
-    if (episode) {
-      cache.add(this.createKey(podcastId, episode.id), episode);
-      this.episodesRepository.select(episode);
+    if(!episode){
+      return EMPTY_EPISODE;
     }
+
+    cache.add(this.createKey(podcastId, episode.id), episode);
+    this.episodesRepository.select(episode);
     return episode;
   }
 
