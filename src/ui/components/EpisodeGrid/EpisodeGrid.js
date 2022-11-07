@@ -6,6 +6,7 @@ import Paragraph from '../Text/Paragraph/Paragraph';
 import * as Styled from './EpisodeGrid.styled'
 
 const EpisodeGrid = ({episodes, selectEpisodeHandler}) => {
+  const formatDate = (stringDate) => new Intl.DateTimeFormat('es-ES').format(new Date(stringDate));
   return (
     <Styled.EpisodeGrid>
       <Card>
@@ -27,7 +28,7 @@ const EpisodeGrid = ({episodes, selectEpisodeHandler}) => {
             <Styled.Row key={episode.id}
               onClick={(event) => !!selectEpisodeHandler && selectEpisodeHandler(event, episode)}>
               <Styled.DataHighlightedCell>{episode.title}</Styled.DataHighlightedCell>
-              <Styled.DataCell>{episode.date}</Styled.DataCell>
+              <Styled.DataCell>{formatDate(episode.date)}</Styled.DataCell>
               <Styled.DataCell>{episode.media.duration}</Styled.DataCell>
             </Styled.Row>
           )

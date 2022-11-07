@@ -7,12 +7,14 @@ const onLoadImageError = (imgRef) => {
     imgRef.current.src = WithoutImage
   }
 }
-const Image = ({width, src, alt, round}) => {
+const Image = ({width, height, src, alt, round}) => {
   const imgRef = useRef();
   return (
     <Styled.Image
+      ref={imgRef}
       src={src}
       width={width}
+      height = {height}
       alt={alt}
       onError={() => onLoadImageError(imgRef)}
       isRound={round}

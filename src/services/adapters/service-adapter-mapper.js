@@ -21,12 +21,10 @@ const adapterMapper = {
       const {
         _attributes: {
           url,
-          length,
           type,
         }
       } = enclosure
-
-      const media = new Media(url, type, length);
+      const media = new Media(url, type, item['itunes:duration']._text);
       /*
                         some resources do not have a well-formed guid
                         */
@@ -47,7 +45,7 @@ const adapterMapper = {
         entry
       }
     } = serviceResponse;
-
+    //debugger
     const getLastPosterAvailable = (item) => {
       const images = item['im:image'];
       return images[images.length - 1].label;
@@ -58,7 +56,7 @@ const adapterMapper = {
 
       return new Podcast(item.id.attributes['im:id']
         , getLabelOf(item, 'im:artist')
-        , getLabelOf(item, 'title')
+        , getLabelOf(item, 'im:name')
         , getLastPosterAvailable(item)
         , getLabelOf(item, 'summary'));
     })

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import {zPosition} from '../../../assets/tokens/tokens';
 
-const POSTER_IMAGE_RADIUS = 50;
-const POSTER_WIDTH = 195;
-const POSTER_HEIGHT = 165;
+const POSTER_IMAGE_RADIUS = 80;
+const POSTER_WIDTH = 260;
+const POSTER_HEIGHT = 280;
 
 export const PosterWrapper = styled.div`
     position: relative;
@@ -29,6 +29,6 @@ export const PosterWrapperDescription = styled.div`
     cursor: pointer;
     `
 export const PosterContentDescription = styled.div`
-    margin-top: 35px;
+    margin-top: 60px;
     text-align: center;
     `

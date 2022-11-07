@@ -14,7 +14,7 @@ const Poster = ({podcast, onClick}) => {
   return (
     <Styled.PosterWrapper>
       <Styled.PosterWrapperImage onClick={(event) => onClick(event, podcast)}>
-        <Image alt={title} src={poster} round={true} width={100}/>
+        <Image alt={title} src={poster} round={true} width={160} height={160}/>
       </Styled.PosterWrapperImage>
       <Styled.PosterWrapperDescription onClick={(event) => onClick(event, podcast)}>
         <Card>
