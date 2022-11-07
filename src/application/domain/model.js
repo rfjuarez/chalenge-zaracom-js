@@ -59,7 +59,7 @@ export class PodcastDetailed {
 }
 
 export const EMPTY_PODCAST = new Podcast(S_D, S_D, S_D, S_D, S_D);
-export const EMPTY_EPISODE = new Episode(S_D, S_D, S_D, S_D, S_D, S_D);
+export const EMPTY_EPISODE = new Episode(S_D, S_D, S_D, S_D, S_D);
 export const EMPTY_PODCAST_DETAIL = new PodcastDetailed(EMPTY_PODCAST, []);
 
 export class EpisodeDetailed {
