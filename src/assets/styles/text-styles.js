@@ -51,25 +51,25 @@ export const stylesTextWeightTypeMapper = {
     `
 }
 export const stylesTexThemeColorTypeMapper = {
-  [stylesTextThemeColorType.REGULAR]: css`
+  [stylesTextThemeColorType.REGULAR]: () =>  css`
     color: ${colorTheme.DARK_STRONG};
     `,
-  [stylesTextThemeColorType.STRONG]: css`
+  [stylesTextThemeColorType.STRONG]: () =>  css`
     color: ${colorTheme.DARK_STRONGEST};
   `,
-  [stylesTextThemeColorType.LIGHT]: css`
+  [stylesTextThemeColorType.LIGHT]: () =>  css`
     color: ${colorTheme.SKY_REGULAR};
    `,
-  [stylesTextThemeColorType.HIGHLIGHTED_LIGHT]: css`
+  [stylesTextThemeColorType.HIGHLIGHTED_LIGHT]: () => css`
     color: ${colorTheme.LIGHT_REGULAR};
    `,
-  [stylesTextThemeColorType.HIGHLIGHTED_STRONG]: css`
+  [stylesTextThemeColorType.HIGHLIGHTED_STRONG]: () =>  css`
     color: ${colorTheme.LIGHTEST};
    `,
-  [stylesTextThemeColorType.SKY_STRONG]: css`
+  [stylesTextThemeColorType.SKY_STRONG]: () =>  css`
     color: ${colorTheme.SKY_STRONG};
    `,
-  [stylesTextThemeColorType.SKY]: css`
+  [stylesTextThemeColorType.SKY]: () =>  css`
     color: ${colorTheme.SKY_REGULAR};
    `
 };
