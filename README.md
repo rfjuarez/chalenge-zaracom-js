@@ -85,13 +85,21 @@ Para realizar la sobre carga de las configuraciones de WebPack, y evitar realiza
 Para todos los componentes que requirieron manejo dinámico o reutilizar bloques existentes de estilos,
 se empleó Styled Component.
 
+
+
 ## Cómo correr la aplicación.
-## Para desarrollo
+* Clonar rama release/presentacion-candidata o descargar la ultima version empaquetada.
 * nvm use v16.18.0 (**Solo si emplea nvm para la gestion de versiones de node**)
 * npm install
+
+
+## Para desarrollo
 * npm start
+
+
 ## Para desplegar en prod
 * npm build
+*  o build:win para ambientes con Windows
 
 La aplicacion puede ser provada empleando serve para desplegar en forma local o en cualquier servidor usando
 el empaquetado generado en la carpeta build.
