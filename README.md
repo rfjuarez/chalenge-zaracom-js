@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+# Challenge 
+## Abstract
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta aplicación demostración de habilidades técnicas para front.
 
-## Available Scripts
+## Lo que se incluye hasta el momento.
 
-In the project directory, you can run:
+* Arquitectura del proyecto basada en arquitectura hexagonal.
+  * Layers
+    * Application
+    * Services
+    * UI
+    * Store
+## Sobre las capas.
+  * Application: Contiene los modelos de dominio y casos de usos.
+  * Servicios: Responsable de las llamadas a las API externas.
+  * Store: Implementación de Redux, se lo considera como una dependencia externa, por simplicidad, usa el mismo modelo
+de dominio.
+  * UI: Implementación de React, contiene, entre otros, de los módulos: components, pages, routes 
 
-### `npm start`
+## Manejo de Cache.
+A nivel de caso de uso se emplea un mapa para buscar elementos existentes de una manera rápida.
+Sin embargo la responsabilidad del consumo, recae sobre el Service Worker.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Algunas consideraciones sobre el armado del proyecto
+El manejo de las dependencias entre capas fueron manejadas mediante HOF, como sustituto funcional para la inyección de dependencias.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```javascript
+const useUseCasePodcast = () => {
+    const dispatch = useDispatch();
+    //se crean las dependencia para Redux dispatch
+    const podcastRepository = podcastRepositoryAdapter(dispatch);
+    const episodeRepository = episodeRepositoryAdapter(dispatch);
+    //se inyectan las dependecias
+    const _useCasePodcast = new UseCasePodcastStateFull(podcastRepository, episodeRepository)
+    return {
+        useCasePodcast: _useCasePodcast,
+    }
+}
+export default useUseCasePodcast
+```
+El manejo de las interfaces se realizó mediante extensión de los prototipos declarados en el paquete port.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+const episodeRepositoryAdapter = (dispatch) => ({
+    //se crea una estrutura a partir del prototipo port.
+    ...episodeRepositoryPort,
+    findAll: async (idPodcast) => {
+        return repositoryRequestAdapter(dispatch)(findAllEpisodesAction(idPodcast))
+    },
+    select: async (episode) => {
+        repositoryActionAdapter(selectEpisodeAction(episode));
+    },
+    getSelected: async () => {
+        const {episodes} = storeInstance.getState();
+        return episodes?.selected;
+    },
+    flush: async () => {
+        repositoryActionAdapter(flushEpisodeStoreAction());
+    }
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+});
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Dependencias externas al proyecto
+    Se instalo plugins Moesif CORS en Chrome para el manejo de CORS.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Versión de Node
+    v16.18.0
+## Consideraciones sobre dependencias internas.
+Se empleó para el parse XML
 
-### `npm run eject`
+    xml-js
+Requiriendo instalar las siguientes dependencias adicionales para resolver conflictos con la versión de Node empleada
+    
+    "buffer": "^6.0.3",
+    "stream": "^0.0.2",    
+Para realizar la sobre carga de las configuraciones de WebPack, y evitar realizar un eject se empleó CRACO.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    "@craco/craco": "^7.0.0-alpha.9"
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Criterio para el manejo de Css y Styled Component.
+Para todos los componentes que requirieron manejo dinámico o reutilizar bloques existentes de estilos,
+se empleó Styled Component.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Cómo correr la aplicación.
+* Clonar rama release/presentacion-candidata o descargar la ultima version empaquetada.
+* nvm use v16.18.0 (**Solo si emplea nvm para la gestion de versiones de node**)
+* npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Para desarrollo
+* npm start
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Para desplegar en prod
+* npm build
+*  o build:win para ambientes con Windows
 
-### Analyzing the Bundle Size
+La aplicacion puede ser provada empleando serve para desplegar en forma local o en cualquier servidor usando
+el empaquetado generado en la carpeta build.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Instalar serve
+    npm isntall serve -g
+### Desplegar localmente
+    
+    serve -s build
 
-### Making a Progressive Web App
+**Importante:** Para probar el funcionamiento del service worker es requerido desplegar el build, sea local o
+en algún servidor.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Sobre el branch model y git flow empleado.
+Se siguio la siguiente estructura:
 
-### Advanced Configuration
+Todas las funcionalidades ramificaron desde develop, y se integraron a esta mediante PR. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Los releases se crearon a partir de develop.
+Se realizaron pruebas funcionales y los bugfix detectados sobre la release se ramifican de esta y se integraron luego
+mediatne PR a ambas partes, release y develop.
 
-### Deployment
+No hay master en uso.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+La rama de presentación es: release/presentacion-candidata.

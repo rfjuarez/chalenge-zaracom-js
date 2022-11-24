@@ -1,0 +1,17 @@
+.podcast-detailed {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.podcast-detailed__podcast {
+    display: inherit;
+    margin: 32px 16px;
+}
+
+.podcast-detailed__episode-grid {
+    display: inherit;
+    margin: 32px 16px;
+    width: 100%;
+}
