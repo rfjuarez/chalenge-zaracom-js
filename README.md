@@ -3,8 +3,7 @@
 
 Esta aplicación demostración de habilidades técnicas para front.
 
-## Lo que se incluye hasta el momento.
-
+## Descripción 
 * Arquitectura del proyecto basada en arquitectura hexagonal.
   * Layers
     * Application
@@ -88,7 +87,7 @@ se empleó Styled Component.
 
 
 ## Cómo correr la aplicación.
-* Clonar rama release/presentacion-candidata o descargar la ultima version empaquetada.
+* Clonar respositorio o descargar la ultima version empaquetada.
 * nvm use v16.18.0 (**Solo si emplea nvm para la gestion de versiones de node**)
 * npm install
 
@@ -122,6 +121,7 @@ Los releases se crearon a partir de develop.
 Se realizaron pruebas funcionales y los bugfix detectados sobre la release se ramifican de esta y se integraron luego
 mediatne PR a ambas partes, release y develop.
 
-No hay master en uso.
+La rama por defecto: master.
 
-La rama de presentación es: release/presentacion-candidata.
+## Contenedor Docker
+https://hub.docker.com/repository/docker/rfjuarez/challenge-zaracom-js
